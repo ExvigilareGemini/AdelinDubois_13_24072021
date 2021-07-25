@@ -18,7 +18,7 @@ export default function Header() {
         </p>
       </Link>
       <div className="signLinkContainer">
-        <Link className="signLink" to="/Sign">
+        <Link className="signLink" to="/login">
           <p className="main-nav-item">
             <FontAwesomeIcon icon={faUserCircle} />
             Sign In

@@ -1,7 +1,7 @@
 import React from "react";
 import Homepage from "./pages/Homepage";
-import Sign from "./pages/Sign";
-import User from "./pages/User";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import Error404 from "./pages/Error404";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,8 +14,8 @@ export default function App() {
       <Header />
       <Switch>
         <Route path="/" exact component={Homepage} />
-        <Route path="/Sign" exact component={Sign} />
-        <Route path="/User" exact component={User} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/profile" exact component={Profile} />
         <Route path="*" component={Error404} />
       </Switch>
       <Footer />
