@@ -6,27 +6,25 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   return (
-    <div className="header">
-      <nav className="main-nav">
-        <h1 className="sr-only">Argent Bank</h1>
-        <Link className="homepageLink" to="/">
-          <p className="main-nav-logo">
-            <img
-              className="main-nav-logo-image"
-              src={Logo}
-              alt="Argent Bank Logo"
-            />
+    <nav className="main-nav">
+      <h1 className="sr-only">Argent Bank</h1>
+      <Link className="homepageLink" to="/">
+        <p className="main-nav-logo">
+          <img
+            className="main-nav-logo-image"
+            src={Logo}
+            alt="Argent Bank Logo"
+          />
+        </p>
+      </Link>
+      <div className="signLinkContainer">
+        <Link className="signLink" to="/Sign">
+          <p className="main-nav-item">
+            <FontAwesomeIcon icon={faUserCircle} />
+            Sign In
           </p>
         </Link>
-        <div className="signLinkContainer">
-          <Link className="signLink" to="/Sign">
-            <p className="main-nav-item">
-              <FontAwesomeIcon icon={faUserCircle} />
-              Sign In
-            </p>
-          </Link>
-        </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
