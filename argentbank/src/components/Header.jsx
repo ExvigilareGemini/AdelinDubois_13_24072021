@@ -8,18 +8,18 @@ export default function Header() {
   return (
     <div className="header">
       <nav className="main-nav">
-        <Link className="homepageLink" exact to="/">
+        <h1 className="sr-only">Argent Bank</h1>
+        <Link className="homepageLink" to="/">
           <p className="main-nav-logo">
             <img
               className="main-nav-logo-image"
               src={Logo}
               alt="Argent Bank Logo"
             />
-            <h1 className="sr-only">Argent Bank</h1>
           </p>
         </Link>
         <div className="signLinkContainer">
-          <Link className="signLink" exact to="/Sign">
+          <Link className="signLink" to="/Sign">
             <p className="main-nav-item">
               <FontAwesomeIcon icon={faUserCircle} />
               Sign In
