@@ -2,6 +2,7 @@ import { LOGIN } from "../constants/login";
 
 const initialState = {
   auth: false,
+  token: false,
 };
 
 export const reducers = (state = initialState, action) => {
@@ -10,6 +11,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         auth: true,
+        token: action.token,
       };
     default:
       return state;

@@ -24,6 +24,6 @@ function user(props) {
     </main>
   );
 }
-const mapStateToProps = (state) => ({ user: { auth: state.auth } });
+const mapStateToProps = (state) => ({ user: { auth: state.auth, token: state.token } });
 
 export default connect(mapStateToProps, null)(user);

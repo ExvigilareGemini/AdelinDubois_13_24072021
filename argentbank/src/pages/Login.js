@@ -24,9 +24,9 @@ export class Login extends React.Component {
 
   async clickOnLoginBtn() {
     const answer = await apiLogin(this.state.username, this.state.password);
-    answer.status === 200
-      ? this.props.loginAction()
-      : console.log("error", answer);
+    if (answer.status === 200) {
+      return this.props.loginAction(answer.body.token);
+    }
   }
 
   render() {
@@ -74,7 +74,7 @@ export class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ user: { auth: state.auth } });
+const mapStateToProps = (state) => ({ user: { auth: state.auth, token: state.token } });
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
