@@ -2,8 +2,11 @@ import React from "react";
 import UserHeader from "../components/Profile/UserHeader";
 import Account from "../components/Profile/Account";
 import { accountDatas } from "../data/account-datas";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
-export default function user() {
+function user(props) {
+  if (!props.user.auth) return <Redirect to="/" />;
   return (
     <main className="main bg-dark">
       <UserHeader />
@@ -21,3 +24,6 @@ export default function user() {
     </main>
   );
 }
+const mapStateToProps = (state) => ({ user: { auth: state.auth } });
+
+export default connect(mapStateToProps, null)(user);

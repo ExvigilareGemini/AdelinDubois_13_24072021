@@ -1,5 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Redirect } from "react-router";
 import apiLogin from "../callService";
+import { loginAction } from "../redux/actions/login";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -20,10 +24,14 @@ export class Login extends React.Component {
 
   async clickOnLoginBtn() {
     const answer = await apiLogin(this.state.username, this.state.password);
-    console.log(answer);
+    answer.status === 200
+      ? this.props.loginAction()
+      : console.log("error", answer);
   }
 
   render() {
+    if (this.props.user.auth) return <Redirect to="/profile" />;
+
     return (
       <main className="main bg-dark">
         <section className="sign-in-content">
@@ -66,4 +74,15 @@ export class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({ user: { auth: state.auth } });
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      loginAction,
+    },
+    dispatch
+  );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
