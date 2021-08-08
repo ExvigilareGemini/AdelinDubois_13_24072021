@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
 function user(props) {
-  if (!props.user.auth) return <Redirect to="/" />;
+  if (!props.user.isAuth) return <Redirect to="/" />;
   return (
     <main className="main bg-dark">
       <UserHeader />
@@ -24,6 +24,6 @@ function user(props) {
     </main>
   );
 }
-const mapStateToProps = (state) => ({ user: { auth: state.auth, token: state.token } });
+const mapStateToProps = (state) => ({ user: { isAuth: state.isAuth } });
 
 export default connect(mapStateToProps, null)(user);

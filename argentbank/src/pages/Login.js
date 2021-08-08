@@ -30,7 +30,7 @@ export class Login extends React.Component {
   }
 
   render() {
-    if (this.props.user.auth) return <Redirect to="/profile" />;
+    if (this.props.user.isAuth) return <Redirect to="/profile" />;
 
     return (
       <main className="main bg-dark">
@@ -74,7 +74,7 @@ export class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ user: { auth: state.auth, token: state.token } });
+const mapStateToProps = (state) => ({ user: { isAuth: state.isAuth } });
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(

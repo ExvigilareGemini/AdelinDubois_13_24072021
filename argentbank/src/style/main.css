@@ -55,6 +55,10 @@ body, .App {
   color: #42b983;
 }
 
+.signLinkContainer {
+  display: flex ;
+}
+
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;

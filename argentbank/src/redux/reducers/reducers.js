@@ -1,7 +1,7 @@
 import { LOGIN } from "../constants/login";
 
 const initialState = {
-  auth: false,
+  isAuth: false,
   token: false,
 };
 
@@ -10,7 +10,7 @@ export const reducers = (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        auth: true,
+        isAuth: true,
         token: action.token,
       };
     default:
