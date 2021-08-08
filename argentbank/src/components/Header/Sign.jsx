@@ -18,13 +18,13 @@ export class Sign extends React.Component {
           <div className="signLinkContainer">
             <Link className="signLink" to="/profile">
               <p className="main-nav-item">
-                <FontAwesomeIcon icon={faUserCircle} />
-                Tony
+                <FontAwesomeIcon icon={faUserCircle} />{" "}
+                {this.props.user.firstName}
               </p>
             </Link>
             <Link className="signLink" to="/">
               <p className="main-nav-item" onClick={() => this.clickOnLogout()}>
-                <FontAwesomeIcon icon={faSignOutAlt} />
+                <FontAwesomeIcon icon={faSignOutAlt} />{" "}
                 Sign Out
               </p>
             </Link>
@@ -48,7 +48,9 @@ export class Sign extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ user: { isAuth: state.isAuth } });
+const mapStateToProps = (state) => ({
+  user: { isAuth: state.isAuth, firstName: state.firstName },
+});
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(

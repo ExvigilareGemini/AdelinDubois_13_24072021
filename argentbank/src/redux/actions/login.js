@@ -11,3 +11,10 @@ export const logoutAction = () => {
     type: types.LOGOUT,
   };
 };
+export const updateProfileAction = (firstName, lastName) => {
+  return {
+    type: types.UPDATE_PROFILE,
+    firstName: firstName,
+    lastName: lastName,
+  };
+};

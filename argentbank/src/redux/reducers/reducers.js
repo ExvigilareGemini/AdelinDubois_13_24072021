@@ -1,8 +1,10 @@
-import { LOGIN, LOGOUT } from "../constants/login";
+import { LOGIN, LOGOUT, UPDATE_PROFILE } from "../constants/login";
 
 const initialState = {
   isAuth: false,
   token: false,
+  firstName: "",
+  lastName: "",
 };
 
 export const reducers = (state = initialState, action) => {
@@ -17,6 +19,12 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isAuth: false,
+      };
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        firstName: action.firstName,
+        lastName: action.lastName,
       };
     default:
       return state;

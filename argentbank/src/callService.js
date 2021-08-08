@@ -22,3 +22,24 @@ export default async function apiLogin(email, password) {
 
   return datasToReturn;
 }
+
+export async function getUserDatas(token) {
+  let datasToReturn = {};
+  const header = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  await Axios.post(`/profile`, {}, header)
+    .then((response) => {
+      datasToReturn = response.data;
+    })
+    .catch(() => {
+      datasToReturn.data = {
+        status: 401,
+      };
+    });
+
+  return datasToReturn;
+}
