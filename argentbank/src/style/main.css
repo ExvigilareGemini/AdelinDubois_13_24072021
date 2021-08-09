@@ -260,12 +260,35 @@ body, .App {
   flex: 1;
 }
 
+.headerInput {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.inputTitle{
+  width: 100vw;
+}
+
+.inputName {
+  width: 200px;
+  margin: 10px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
 .edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
+}
+
+.save-button {
+  width: 120px;
+  margin: 0 10px;
 }
 
 .header {

@@ -24,6 +24,8 @@ export class user extends React.Component {
     return (
       <main className="main bg-dark">
         <UserHeader />
+
+
         <h2 className="sr-only">Accounts</h2>
         {accountDatas.map((obj, index) => {
           return (
