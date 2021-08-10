@@ -43,3 +43,30 @@ export async function getUserDatas(token) {
 
   return datasToReturn;
 }
+
+export async function editProfileDatas(token, firstName, lastName) {
+  let datasToReturn = {};
+
+  const body = {
+    firstName: firstName,
+    lastName: lastName,
+  };
+
+  const header = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  await Axios.put(`/profile`, body, header)
+    .then((response) => {
+      datasToReturn = response.data;
+    })
+    .catch(() => {
+      datasToReturn.data = {
+        status: 401,
+      };
+    });
+
+  return datasToReturn;
+}
