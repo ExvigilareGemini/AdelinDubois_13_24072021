@@ -74,7 +74,7 @@ export class UserHeader extends React.Component {
         <h1>
           Welcome back
           <br />
-          {this.props.user.firstName} {this.props.user.lastName} !
+          {firstName} {lastName} !
         </h1>
         <button
           className="edit-button"
