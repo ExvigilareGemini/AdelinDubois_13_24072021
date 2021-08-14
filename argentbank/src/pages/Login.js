@@ -28,6 +28,9 @@ export class Login extends React.Component {
       sessionStorage.setItem("token", answer.body.token);
       return this.props.loginAction(answer.body.token);
     }
+    else if (answer.data.status === 401) {
+      alert("Email ou mot de passe incorrect")
+    }
   }
 
   render() {
