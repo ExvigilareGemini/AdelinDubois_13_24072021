@@ -6,9 +6,14 @@ import Error404 from "./pages/Error404";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { loginAction } from "./redux/actions/login";
+
 import "./style/main.css";
 
-export default function App() {
+function App(props) {
+  if (sessionStorage.getItem('token')) { props.loginAction(sessionStorage.getItem('token'))} 
   return (
     <div className="App">
       <Header />
@@ -22,3 +27,14 @@ export default function App() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      loginAction,
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(App);

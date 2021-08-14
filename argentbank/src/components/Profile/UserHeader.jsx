@@ -28,15 +28,17 @@ export class UserHeader extends React.Component {
   async updateProfile() {
     const answer = await editProfileDatas(
       this.props.user.token,
-      this.state.firstName === "" ? this.props.firstName : this.state.firstName,
-      this.state.lastName === "" ? this.props.lastName : this.state.lastName
+      this.state.firstName === null ? this.props.firstName : this.state.firstName,
+      this.state.lastName === null ? this.props.lastName : this.state.lastName
     );
+    sessionStorage.setItem("firstName", answer.body.firstName);
+    sessionStorage.setItem("lastName", answer.body.lastName);
     this.props.updateProfileAction(answer.body.firstName, answer.body.lastName);
     this.props.setProfileEditorHidden();
   }
 
   render() {
-    const { firstName, lastName} = this.props.user;
+    const { firstName, lastName } = this.props.user;
 
     if (this.props.isProfileEditorVisible) {
       return (
@@ -57,7 +59,12 @@ export class UserHeader extends React.Component {
             />
           </div>
           <div className="buttonContainer">
-            <button className="edit-button save-button" onClick={() => this.updateProfile()}>Save</button>
+            <button
+              className="edit-button save-button"
+              onClick={() => this.updateProfile()}
+            >
+              Save
+            </button>
             <button
               className="edit-button save-button"
               onClick={this.props.setProfileEditorHidden}

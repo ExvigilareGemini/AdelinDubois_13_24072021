@@ -12,6 +12,8 @@ export class user extends React.Component {
   async componentDidMount() {
     const answer = await getUserDatas(this.props.user.token);
     if (answer.status === 200) {
+      sessionStorage.setItem("firstName", answer.body.firstName);
+      sessionStorage.setItem("lastName", answer.body.lastName);
       return this.props.updateProfileAction(
         answer.body.firstName,
         answer.body.lastName
@@ -20,23 +22,26 @@ export class user extends React.Component {
   }
 
   render() {
-    if (!this.props.user.isAuth) return <Redirect to="/" />;
-    return (
-      <main className="main bg-dark">
-        <UserHeader />
-        <h2 className="sr-only">Accounts</h2>
-        {accountDatas.map((obj, index) => {
-          return (
-            <Account
-              key={obj.title + index}
-              title={obj.title}
-              amount={obj.amount}
-              description={obj.description}
-            />
-          );
-        })}
-      </main>
-    );
+    const { isAuth } = this.props.user;
+
+    if (isAuth && sessionStorage.getItem("token"))
+      return (
+        <main className="main bg-dark">
+          <UserHeader />
+          <h2 className="sr-only">Accounts</h2>
+          {accountDatas.map((obj, index) => {
+            return (
+              <Account
+                key={obj.title + index}
+                title={obj.title}
+                amount={obj.amount}
+                description={obj.description}
+              />
+            );
+          })}
+        </main>
+      );
+    return <Redirect to="/" />;
   }
 }
 

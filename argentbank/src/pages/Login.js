@@ -25,6 +25,7 @@ export class Login extends React.Component {
   async clickOnLoginBtn() {
     const answer = await apiLogin(this.state.username, this.state.password);
     if (answer.status === 200) {
+      sessionStorage.setItem("token", answer.body.token);
       return this.props.loginAction(answer.body.token);
     }
   }

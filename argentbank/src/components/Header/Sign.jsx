@@ -8,24 +8,24 @@ import { logoutAction } from "../../redux/actions/login";
 
 export class Sign extends React.Component {
   clickOnLogout() {
+    sessionStorage.clear();
     return this.props.logoutAction();
   }
 
   render() {
-    if (this.props.user.isAuth) {
+    const { isAuth, firstName } = this.props.user;
+    if (isAuth) {
       return (
         <div>
           <div className="signLinkContainer">
             <Link className="signLink" to="/profile">
               <p className="main-nav-item">
-                <FontAwesomeIcon icon={faUserCircle} />{" "}
-                {this.props.user.firstName}
+                <FontAwesomeIcon icon={faUserCircle} /> {firstName ? firstName : sessionStorage.getItem('firstName')}
               </p>
             </Link>
             <Link className="signLink" to="/">
               <p className="main-nav-item" onClick={() => this.clickOnLogout()}>
-                <FontAwesomeIcon icon={faSignOutAlt} />{" "}
-                Sign Out
+                <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
               </p>
             </Link>
           </div>
