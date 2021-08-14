@@ -15,7 +15,6 @@ export class UserHeader extends React.Component {
     this.state = { firstName: "", lastName: "" };
     this.getFirstName = this.getFirstName.bind(this);
     this.getLastName = this.getLastName.bind(this);
-    // const { firstName, lastName, token } = this.props;
   }
 
   getFirstName(event) {
@@ -37,6 +36,8 @@ export class UserHeader extends React.Component {
   }
 
   render() {
+    const { firstName, lastName} = this.props.user;
+
     if (this.props.isProfileEditorVisible) {
       return (
         <div className="header">
@@ -45,13 +46,13 @@ export class UserHeader extends React.Component {
             <input
               className="inputName"
               type="text"
-              placeholder={this.props.user.firstName}
+              placeholder={firstName}
               onChange={this.getFirstName}
             />
             <input
               className="inputName"
               type="text"
-              placeholder={this.props.user.lastName}
+              placeholder={lastName}
               onChange={this.getLastName}
             />
           </div>
