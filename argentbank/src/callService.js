@@ -14,10 +14,16 @@ export default async function apiLogin(email, password) {
     .then((response) => {
       datasToReturn = response.data;
     })
-    .catch(() => {
-      datasToReturn.data = {
-        status: 401,
-      };
+    .catch((err) => {
+      err.message.includes("Network Error")
+        ? (datasToReturn.data = {
+            status: 404,
+            message: "Erreur du serveur, veuillez réessayer plus tard",
+          })
+        : (datasToReturn.data = {
+            status: 400,
+            message: "Email ou mot de passe incorrect",
+          });
     });
 
   return datasToReturn;
