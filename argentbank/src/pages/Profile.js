@@ -4,27 +4,18 @@ import Account from "../components/Profile/Account";
 import { accountDatas } from "../data/account-datas";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import { getUserDatas } from "../callService";
 import { bindActionCreators } from "redux";
-import { updateProfileAction } from "../redux/actions/edit";
+import { getProfileDatas } from "../redux/actions/edit";
 
 export class user extends React.Component {
   async componentDidMount() {
-    const answer = await getUserDatas(this.props.user.token);
-    if (answer.status === 200) {
-      sessionStorage.setItem("firstName", answer.body.firstName);
-      sessionStorage.setItem("lastName", answer.body.lastName);
-      return this.props.updateProfileAction(
-        answer.body.firstName,
-        answer.body.lastName
-      );
-    }
+    const { token } = this.props.user;
+    return this.props.getProfileDatas(token);
   }
 
   render() {
     const { isAuth } = this.props.user;
-
-    if (isAuth && sessionStorage.getItem("token"))
+    if (isAuth)
       return (
         <main className="main bg-dark">
           <UserHeader />
@@ -55,7 +46,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      updateProfileAction,
+      getProfileDatas,
     },
     dispatch
   );

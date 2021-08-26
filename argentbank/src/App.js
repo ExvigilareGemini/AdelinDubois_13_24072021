@@ -13,7 +13,6 @@ import { loginAction } from "./redux/actions/login";
 import "./style/main.css";
 
 function App(props) {
-  if (sessionStorage.getItem('token')) { props.loginAction(sessionStorage.getItem('token'))} 
   return (
     <div className="App">
       <Header />

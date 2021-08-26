@@ -1,5 +1,5 @@
-import { LOGIN, LOGOUT } from "../constants/login";
-import { UPDATE_PROFILE, PROFILE_EDITOR_VISIBLE, PROFILE_EDITOR_HIDDEN } from "../constants/edit";
+import { LOGIN, LOGIN_SUCCESS, LOGOUT } from "../constants/login";
+import { UPDATE_PROFILE, PROFILE_EDITOR_VISIBLE, PROFILE_EDITOR_HIDDEN, GET_PROFILE } from "../constants/edit";
 
 const initialState = {
   isAuth: false,
@@ -11,11 +11,11 @@ const initialState = {
 
 export const reducers = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN:
+    case LOGIN_SUCCESS:
       return {
         ...state,
         isAuth: true,
-        token: action.token,
+        token: action.token
       };
     case LOGOUT:
       return {
@@ -23,6 +23,7 @@ export const reducers = (state = initialState, action) => {
         isAuth: false,
       };
     case UPDATE_PROFILE:
+      console.log(action)
       return {
         ...state,
         firstName: action.firstName,

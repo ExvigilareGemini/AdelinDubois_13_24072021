@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
+  editProfileDatas,
   updateProfileAction,
   setProfileEditorVisible,
   setProfileEditorHidden,
 } from "../../redux/actions/edit";
-import { editProfileDatas } from "../../callService";
 
 export class UserHeader extends React.Component {
   constructor(props) {
@@ -26,20 +26,20 @@ export class UserHeader extends React.Component {
   }
 
   async updateProfile() {
-    const answer = await editProfileDatas(
-      this.props.user.token,
-      this.state.firstName === null ? this.props.firstName : this.state.firstName,
-      this.state.lastName === null ? this.props.lastName : this.state.lastName
+    this.props.editProfileDatas(
+      this.state.firstName === null
+        ? this.props.firstName
+        : this.state.firstName,
+      this.state.lastName === null 
+        ? this.props.lastName 
+        : this.state.lastName,
+      this.props.user.token
     );
-    sessionStorage.setItem("firstName", answer.body.firstName);
-    sessionStorage.setItem("lastName", answer.body.lastName);
-    this.props.updateProfileAction(answer.body.firstName, answer.body.lastName);
-    this.props.setProfileEditorHidden();
+    this.props.setProfileEditorHidden()
   }
 
   render() {
     const { firstName, lastName } = this.props.user;
-
     if (this.props.isProfileEditorVisible) {
       return (
         <div className="header">
@@ -106,6 +106,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
+      editProfileDatas,
       updateProfileAction,
       setProfileEditorVisible,
       setProfileEditorHidden,

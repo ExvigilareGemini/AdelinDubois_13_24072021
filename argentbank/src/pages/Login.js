@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Redirect } from "react-router";
-import apiLogin from "../callService";
 import { loginAction } from "../redux/actions/login";
 
 export class Login extends React.Component {
@@ -23,13 +22,7 @@ export class Login extends React.Component {
   }
 
   async clickOnLoginBtn() {
-    const answer = await apiLogin(this.state.username, this.state.password);
-    if (answer.status === 200) {
-      sessionStorage.setItem("token", answer.body.token);
-      return this.props.loginAction(answer.body.token);
-    } else {
-      alert(`Erreur: ${answer.data.status} - ${answer.data.message}`);
-    }
+    return this.props.loginAction(this.state.username, this.state.password);
   }
 
   render() {

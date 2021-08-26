@@ -8,7 +8,6 @@ import { logoutAction } from "../../redux/actions/login";
 
 export class Sign extends React.Component {
   clickOnLogout() {
-    sessionStorage.clear();
     return this.props.logoutAction();
   }
 
@@ -20,7 +19,7 @@ export class Sign extends React.Component {
           <div className="signLinkContainer">
             <Link className="signLink" to="/profile">
               <p className="main-nav-item">
-                <FontAwesomeIcon icon={faUserCircle} /> {firstName ? firstName : sessionStorage.getItem('firstName')}
+                <FontAwesomeIcon icon={faUserCircle} /> {firstName ? firstName : "Error"}
               </p>
             </Link>
             <Link className="signLink" to="/">
